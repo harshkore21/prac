@@ -1,0 +1,114 @@
+// 18. Write a Java code to Read, Insert, Update and Delete any record from the database.(Employee table).
+
+import java.sql.*;
+
+public class q18 {
+    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/hk";
+    static final String USER = "root";
+    static final String PASSWORD = "root";
+
+    public static void main(String[] args) {
+        Connection conn = null;
+        Statement stmt = null;
+
+        try {
+            // Register JDBC driver
+            Class.forName(JDBC_DRIVER);
+
+            // Open a connection
+            System.out.println("Connection to database... ");
+            conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+
+            // Create a statement
+            stmt = conn.createStatement();
+
+            // CRUD Operations
+            // 1. Read or select operation
+            readData(stmt);
+
+            // 2. Insert operation
+            insertData(stmt, "Harsh Kore", 20, "hk@gmail.com");
+            insertData(stmt, "Abhay Badhe", 21, "ab@gmail.com");
+
+            // 3. Update operation
+            updateData(stmt, 1, "Harsh Kore", 21, "hkore@gmail.com");
+
+            // 4. Delete operation
+            deleteData(stmt, 2);
+
+            readData(stmt);
+
+        } 
+        catch (SQLException se) {
+            se.printStackTrace();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally{
+
+            try {
+                if (stmt != null) stmt.close();
+            } 
+            catch (SQLException se) {
+                se.printStackTrace();
+            }
+
+            try {
+                if (conn != null) conn.close();
+            } 
+            catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+    }
+
+    // Read or Select Operation
+    private static void readData(Statement stmt) throws SQLException{
+        System.out.println("Reading data from Employee table... ");
+
+        String sql = "SELECT * FROM Employee";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String name = rs.getString("name");
+            int age = rs.getInt("age");
+            String email = rs.getString("email");
+
+            System.out.println("ID: " + id + ", Name: " + name + ", Age: " + age + ", Email: " + email);
+        }
+        rs.close();
+    }
+
+    // Insert Operation
+    private static void insertData(Statement stmt, String name, int age, String email) throws SQLException{
+        System.out.println("Inserting a new record... ");
+
+        String sql = "INSERT INTO Employee (name, age, email) VALUES ('" + name + "', " + age + ", '" + email + "')";
+        stmt.executeUpdate(sql);
+
+        System.out.println("Record inserted successfully");
+    }
+
+    // Update  Operation
+    private static void updateData(Statement stmt, int id, String name, int age, String email) throws SQLException{
+        System.out.println("Updating a record... ");
+
+        String sql = "UPDATE Employee SET name='" + name + "', age=" + age + ", email='" + email + "' WHERE id=" + id;
+        stmt.executeUpdate(sql);
+
+        System.out.println("Record updated successfully");
+    }
+
+    // Delete  Operation
+    private static void deleteData(Statement stmt, int id) throws SQLException{
+        System.out.println("Deleting a record... ");
+
+        String sql = "DELETE FROM Employee WHERE id=" + id;
+        stmt.executeUpdate(sql);
+
+        System.out.println("Record deleted successfully");
+    }
+}

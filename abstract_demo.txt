@@ -1,0 +1,37 @@
+// 7. Write a Java program to create an abstract class Animal that contains non abstract run() and abstract eat() method…Derive two classes Dog and Cat from it
+
+abstract class Animal {
+    public void run(){
+        System.out.println("Animal is running");
+    }
+
+    public abstract void eat();
+}
+
+class Dog extends Animal {
+    @Override
+    public void eat(){
+        System.out.println("Dog is eating");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    public void eat(){
+        System.out.println("Cat is eating");
+    }
+}
+
+public class abstract_demo {
+    public static void main(String[] args) {
+        Animal myDog = new Dog();
+        Animal myCat = new Cat();
+
+        myDog.run();
+        myDog.eat();
+
+        myCat.run();
+        myCat.eat();
+    }
+    
+}

@@ -1,0 +1,15 @@
+// 5. Create a package mca1 which will have 2 classes as class Mathematics with a methods to add two numbers, add three float numbers and class Maximum with a method to find maximum of three numbers.
+
+public class Maximum {
+    public int findMax(int num1, int num2, int num3){
+        int sumInt = num1 + num2 + num3;
+        int max = Math.max(num1, Math.max(num2, num3));
+        return max;
+    }
+
+    public static void main(String[] args) {
+        Maximum max = new Maximum();
+        int result = max.findMax(10, 500, 75);
+        System.out.println("Maximum of three numbers: " + result);
+    }
+}

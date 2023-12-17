@@ -1,0 +1,52 @@
+// 8. Write a Java program to test any five of standard exception
+
+import java.io.FileNotFoundException;
+
+public class standard_exception {
+    public static void main(String[] args) {
+        // 1
+        try {
+            int result = 5 / 0;
+        } 
+        catch (ArithmeticException e) {
+            System.out.println("Arithmetic Exception Caught: " + e.getMessage());
+        }
+
+        // 2
+        try {
+            int[] arr = {1, 2, 3};
+            int value = arr[3];
+        } 
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array Index Out Of Bounds Exception caught: " + e.getMessage());
+        }
+
+        // 3
+        try {
+            String text = null;
+            int length = text.length();
+        } 
+        catch (NullPointerException e) {
+            System.out.println("Null Pointer Exception caught: " + e.getMessage());
+        }
+
+        // 4
+        try {
+            int age = -5;
+            if (age < 0) {
+                throw new IllegalArgumentException("Age cannot be negative");
+            }
+        } 
+        catch (IllegalArgumentException e) {
+            System.out.println("Illegal Argument Exception caught: " + e.getMessage());
+        }
+
+        // 5
+        try {
+            java.io.FileInputStream file = new java.io.FileInputStream("nonexistence.txt");
+        } 
+        catch (FileNotFoundException e) {
+            System.out.println("File Not Found Exception caught: " + e.getMessage());
+        }
+    }    
+}

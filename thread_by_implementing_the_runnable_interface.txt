@@ -1,0 +1,22 @@
+// 11. Write a Java program to create a Thread by Implementing the Runnable Interface. And print the name of currently executing thread.
+
+class myRunnable implements Runnable{
+    public void run(){
+        System.out.println("Thread name: " + Thread.currentThread().getName());
+    }
+}
+
+public class thread_by_implementing_the_runnable_interface {
+    public static void main(String[] args) {
+        myRunnable myRun = new myRunnable();
+
+        Thread thread1 = new Thread(myRun);
+        Thread thread2 = new Thread(myRun);
+
+        thread1.setName("Thread 1");
+        thread2.setName("Thread 2");
+
+        thread1.start();
+        thread2.start();
+    }
+}

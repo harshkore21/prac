@@ -1,0 +1,116 @@
+// 19. Write a Java Servlet Application for login page with proper validations.
+
+                                          web.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+  <display-name>Question 19</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Login</display-name>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>Login_Page.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+</web-app>
+
+                                 login.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login page</title>
+<style>
+	body{
+		    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 97vh;
+    width: 100%;
+	}
+	#body{    display: flex;
+    flex-direction: column;
+    }
+	
+	#submit,#reset{
+		    width: 100px;
+    align-self: center;
+    margin-bottom: 10px;
+	}
+</style>
+</head>
+<body>
+<form action ="Login" method="post">
+	<div id ="header"><h1>Welcome To Login Page</h1></div>
+	
+	<div id = "body"> 
+		User-mail: <input type = "email" name = "uname" required><br>
+		Password: <input type = "password" name = "pass" required><br>
+		
+		<input type="submit" id ="submit"><input type="reset" id = "reset">		
+	</div>
+	
+</form>
+</body>
+</html>
+
+                                    Login.java
+
+package Login_Page;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+/**
+ * Servlet implementation class Login
+ */
+public class Login extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    final String umail ="abc@gmail.com";
+    final String pwd= "123456789";
+    /**
+     * Default constructor. 
+     */
+    public Login() {
+        // TODO Auto-generated constructor stub
+    }
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        PrintWriter out = response.getWriter();
+        String email = request.getParameter("uname");
+        String pass = request.getParameter("pass");
+        
+        out.print((umail.equals(email) && pwd.equals(pass))?"Welcome to the site":"Wrong email or password");
+        
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        doGet(request, response);
+    }
+
+}

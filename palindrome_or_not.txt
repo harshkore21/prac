@@ -1,0 +1,38 @@
+// WAP to How do you check if a given String is Palindrome or not
+
+import java.util.Scanner;
+
+public class palindrome_or_not {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a String to check if it is palindrome or not: ");
+        String inp = sc.nextLine();
+
+        if (isPalindrome(inp)) {
+            System.out.println("The entered string is a Palindrome");
+        } else {
+            System.out.println("The entered string is Not a Palindrome");
+        }
+
+        sc.close();
+    }
+
+    public static boolean isPalindrome(String str){
+        // remove spaces and convert to lowercase
+        str = str.replaceAll("\\s", "").toLowerCase();
+
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+}

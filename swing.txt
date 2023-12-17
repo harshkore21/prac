@@ -1,0 +1,57 @@
+// 17. Write a JAVA program to design a screen using Swing to perform String operations.
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class swing {
+    public static void main(String[] args) {
+        // Create a Jframe
+        JFrame frame = new JFrame("String Operations");
+
+        // Create a JPanel
+        JPanel panel = new JPanel();
+
+        // Create JLabel, JTextField and JButton for user input
+        JLabel inputL = new JLabel("Enter a string: ");
+        JTextField inputF = new JTextField(20);
+        JButton submitButton = new JButton("Submit");
+
+        // Create ActionListner for the submit button
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                performStringOperations(inputF.getText());
+            }
+        });
+
+        // add components to panel
+        panel.add(inputL);
+        panel.add(inputF);
+        panel.add(submitButton);
+
+        // Set up frame
+        frame.getContentPane().add(panel);
+        frame.setSize(300, 150);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+    private static void performStringOperations(String input){
+        // Create a String Builder for the result
+        StringBuilder result = new StringBuilder();
+
+        // Perform string operations
+        result.append("Original String: ").append(input).append("\n");
+        result.append("Reversed String: ").append(reverseString(input)).append("\n");
+        result.append("Uppercase String: ").append(input.toUpperCase()).append("\n");
+        result.append("Number of Characters: ").append(input.length()).append("\n");
+
+        // Display the result in a message dialogue box
+        JOptionPane.showMessageDialog(null, result.toString(), "String Operations Result", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private static String reverseString(String input){
+        // Use string builder to reverse the string
+        return new StringBuilder(input).reverse().toString();
+    }
+}

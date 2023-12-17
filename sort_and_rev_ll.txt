@@ -1,0 +1,58 @@
+// 14. Write a code to sort a linked list and Reverse a linked list in java
+
+import java.util.LinkedList;
+
+public class sort_and_rev_ll {
+    public static void main(String[] args) {
+        // Create linked list
+        LinkedList<Integer> linkedList = new LinkedList<>();
+
+        linkedList.add(5);
+        linkedList.add(2);
+        linkedList.add(8);
+        linkedList.add(1);
+        linkedList.add(9);
+
+        System.out.println("Original Linked List: " + linkedList);
+
+        // sorted linked list
+        sortLinkedList(linkedList);
+        System.out.println("Sorted Linked List: " + linkedList);
+
+        // reverse linked list
+        revLinkedList(linkedList);
+        System.out.println("Reversed Linked List: " + linkedList);
+    }
+
+    // Sort Linked List in assending order
+    public static void sortLinkedList(LinkedList<Integer> list) {
+        int n = list.size();
+
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (list.get(j) > list.get(j + 1)) {
+                    // Swap elements if they are in wrong order
+                    int temp = list.get(j);
+                    list.set(j, list.get(j + 1));
+                    list.set(j + 1, temp);
+                }
+            }
+        }
+    }
+
+    // Reverse Linked List
+    public static void revLinkedList(LinkedList<Integer> list) {
+        int left = 0;
+        int right = list.size() - 1;
+
+        while (left < right) {
+            // Swap the elements at left and right
+            int temp = list.get(left);
+            list.set(left, list.get(right));
+            list.set(right, temp);
+
+            left++;
+            right--;
+        }
+    }
+}

@@ -1,0 +1,40 @@
+// 5. Create a package mca1 which will have 2 classes as class Mathematics with a methods to add two numbers, add three float numbers and class Maximum with a method to find maximum of three numbers.
+
+import java.util.Scanner;
+
+public class Maths {
+    public int add(int num1, int num2){
+        return num1 + num2;
+    }
+
+    public float add(float n1, float n2, float n3){
+        return n1 + n2 + n3;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter num1 (integer): ");
+        int num1 = sc.nextInt();
+
+        System.out.print("Enter num2 (integer): ");
+        int num2 = sc.nextInt();
+
+        System.out.print("Enter n1 (floating point): ");
+        float n1 = sc.nextFloat();
+
+        System.out.print("Enter n2 (floating point): ");
+        float n2 = sc.nextFloat();
+
+        System.out.print("Enter n3 (floating point): ");
+        float n3 = sc.nextFloat();
+
+        Mathematics math = new Mathematics();
+
+        int result1 = math.add(num1, num2);
+        float result2 = math.add(n1, n2, n3);
+
+        System.out.println("The addition of integers is: " + result1);
+        System.out.println("The addition of floating point is: " + result2);
+    }
+}

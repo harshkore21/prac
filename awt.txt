@@ -1,0 +1,80 @@
+// 16. Write Java AWT code to accept Student information and display Student details on the Screen.
+
+import java.awt.*;
+import java.awt.event.*;
+import java.lang.reflect.Field;
+
+public class awt {
+
+    private Frame frame;
+    private Label nameL, rollL, courseL;
+    private TextField nameF, rollF, courseF;
+    private Button submitButton;
+
+    public q16(){
+        frame = new Frame("Student Information App");
+
+        nameL = new Label("Name: ");
+        rollL = new Label("Roll no.: ");
+        courseL = new Label("Course: ");
+        
+        nameF = new TextField();
+        rollF = new TextField();
+        courseF = new TextField();
+        
+        submitButton = new Button("Submit");
+
+        // Create a layout manager for frame
+        FlowLayout layout = new FlowLayout();
+        frame.setLayout(layout);
+
+        // Add components to frame
+        frame.add(nameL);
+        frame.add(nameF);
+        frame.add(rollL);
+        frame.add(rollF);
+        frame.add(courseL);
+        frame.add(courseF);
+        frame.add(submitButton);
+
+        // Handle submit button click evet
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                displayStudentDetails();
+            }
+        });
+
+        frame.setSize(500, 200);
+        frame.setVisible(true);
+
+        // Close frame when window is close
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we){
+                System.exit(0);
+            }
+        });
+    }
+
+    public void displayStudentDetails(){
+        String name = nameF.getText();
+        String rollNo = rollF.getText();
+        String course = courseF.getText();
+
+        String studentDetails = "Student Details: \n" + 
+        "Name: " + name + "\n" + 
+        "Roll No.: " + rollNo + "\n" + 
+        "Course: " + course;
+
+        // Create dialogue box to display student details
+        Frame detailsFrame = new Frame("Student Details");
+        TextArea detailsTextArea = new TextArea(studentDetails, 10, 40);
+        detailsFrame.add(detailsTextArea);
+        detailsFrame.setSize(300, 200);
+        detailsFrame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new awt();
+    }
+}
+

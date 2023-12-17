@@ -1,0 +1,61 @@
+// 12. Write a multithreaded program to print even and odd numbers. Create two threads, one thread prints even number and second thread prints odd number
+
+class numberPrinter{
+    private int n;
+    private boolean isEvenTurn = true;
+
+    // Constructor to initialize the range of numbers to print.
+    public numberPrinter(int n){
+        this.n = n;
+    }
+
+    // Synchronized method to print even numbers.
+    public synchronized void printEven(){
+        for (int i = 2; i <= n; i += 2) {
+            while (!isEvenTurn) {
+                try {
+                    wait();
+                } 
+                catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            System.out.println("Even Thread: " + i);
+            isEvenTurn = false;
+            notify();
+        }
+    }
+
+    // Synchronized method to print odd numbers.
+    public synchronized void printOdd(){
+        for (int i = 1; i <= n; i += 2) {
+            while (isEvenTurn) {
+                try {
+                    wait();
+                } 
+                catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            System.out.println("Odd Thread: " + i);
+            isEvenTurn = true;
+            notify();
+        }
+    }
+}
+
+public class multi_threading {
+    public static void main(String[] args) {
+        // set range from 1 to 10
+        int n = 10; 
+
+        // Create an instance of the NumberPrinter class with the specified range.
+        numberPrinter np = new numberPrinter(n);
+
+        Thread evenThread = new Thread(() -> np.printEven());
+        Thread oddThread = new Thread(() -> np.printOdd());
+
+        evenThread.start();
+        oddThread.start();
+    }
+}

@@ -1,0 +1,20 @@
+// 9. Write a Java program to print User-defined exception
+
+class customException extends Exception{
+    public customException(String msg){
+        super(msg);
+    }
+}
+
+public class user_defined_exception {
+    public static void main(String[] args) {
+        try {
+            int age = -5;
+            if (age < 0) {
+                throw new customException("Age cannot be negative");
+            }
+        } catch (customException e) {
+            System.out.println("Custom Exception caught: " + e.getMessage());
+        }
+    }
+}

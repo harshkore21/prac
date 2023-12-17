@@ -1,0 +1,20 @@
+// 10. Write a Java program to create a Thread by extending the Thread class. And print the name of currently executing thread.
+
+class myThread extends Thread{
+    public void run(){
+        System.out.println("Thread name: " + Thread.currentThread().getName());
+    }
+}
+
+public class q10 {
+    public static void main(String[] args) {
+        myThread thread1 = new myThread();
+        myThread thread2 = new myThread();
+
+        thread1.setName("Thread 1");
+        thread2.setName("Thread 2");
+
+        thread1.start();
+        thread2.start();
+    }
+}

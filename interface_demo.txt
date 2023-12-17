@@ -1,0 +1,44 @@
+// 6. Write a Java program to create Animal interface that contains run() and eat() method. And implement methods in Dog and Cat class.
+
+// animal interface
+interface Animal {
+    void run();
+    void eat();
+}
+
+// implement animal interface to dog class
+class Dog implements Animal{
+    @Override
+    public void run(){
+        System.out.println("Dog is running");
+    }
+
+    public void eat(){
+        System.out.println("Dog is eating");
+    }
+}
+
+// implement animal interface to cat class
+class Cat implements Animal{
+    @Override
+    public void run(){
+        System.out.println("Cat is running");
+    }
+
+    public void eat(){
+        System.out.println("Cat is eating");
+    }
+}
+
+public class interface_demo {
+    public static void main(String[] args) {
+        Animal myDog = new Dog();
+        Animal myCat = new Cat();
+
+        myDog.run();
+        myDog.eat();
+
+        myCat.run();
+        myCat.eat();
+    }
+}

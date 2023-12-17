@@ -1,0 +1,37 @@
+// 3. How to reverse a given String? (Without using a pre-defined function)
+
+import java.util.Scanner;
+
+public class rev_string {
+    public static void main(String[] args) {
+        System.out.print("Enter a String to reverse it: ");
+        Scanner sc = new Scanner(System.in);
+        String ori = sc.nextLine();
+        String rev = revS(ori);
+
+        System.out.println("Original String: "+ ori);
+        System.out.println("Reversed String: "+ rev);
+
+        sc.close();
+    }
+
+    public static String revS(String str){
+        char[] charArray = str.toCharArray();
+
+        int left = 0;
+        int right = charArray.length - 1;
+
+        while (left < right) {
+            // Swap char at left and right
+            char temp = charArray[left];
+            charArray[left] = charArray[right];
+            charArray[right] = temp;
+
+            // move left and right to center
+            left++;
+            right--;
+        }
+        
+        return new String(charArray);
+    }
+}

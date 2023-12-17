@@ -1,0 +1,55 @@
+// 2. WAP to find the transpose of a given matrix.
+
+import java.util.Scanner;
+
+public class transpose_arr {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the number of rows in the matrix: ");
+        int rows = sc.nextInt();
+
+        System.out.print("Enter the number of columns in the matrix: ");
+        int columns = sc.nextInt();
+
+        int[][] matrix = new int[rows][columns];
+
+        System.out.println("Enter the matrix values row by row:");
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print("Enter element at position (" + (i + 1) + "," + (j + 1) + "): ");
+                matrix[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("Original Matrix:");
+        displayMatrix(matrix);
+
+        // Find the transpose of the matrix
+        int[][] transpose = new int[columns][rows];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                transpose[j][i] = matrix[i][j];
+            }
+        }
+
+        System.out.println("Transpose of the Matrix:");
+        displayMatrix(transpose);
+
+        sc.close();
+    }
+
+    public static void displayMatrix(int[][] matrix) {
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}

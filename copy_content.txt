@@ -1,0 +1,33 @@
+// 15. Write a Java program to copy the contents of a file to another file.
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class copy_content {
+    public static void main(String[] args) {
+        String sourceFile = "1.txt"; // source file
+        String targetFile = "2.txt"; // target file
+
+        try(FileInputStream sourceStream = new FileInputStream(sourceFile);
+            FileOutputStream targetStream = new FileOutputStream(targetFile)) {
+            // Create FileInputStream to read from the source file and FileOutputStream to write to the target file
+
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            // Initialize a byte array buffer for reading and writing data
+
+            while ((bytesRead = sourceStream.read(buffer)) != -1) {
+                // Read data from the source file into the buffer and check for end of file
+
+                targetStream.write(buffer, 0, bytesRead);
+                // Write data from the buffer to the target file
+            }
+
+            System.out.println("File Copied successfully");
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

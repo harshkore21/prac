@@ -1,0 +1,35 @@
+// 13. Write a code to remove duplicates from Array List in Java.
+
+import java.util.*;
+
+public class arr_list {
+    public static void main(String[] args) {
+        List<Integer> arrayListWithDuplicates = new ArrayList<>();
+        arrayListWithDuplicates.add(1);
+        arrayListWithDuplicates.add(2);
+        arrayListWithDuplicates.add(1);
+        arrayListWithDuplicates.add(3);
+        arrayListWithDuplicates.add(2);
+        arrayListWithDuplicates.add(5);
+        arrayListWithDuplicates.add(5);
+
+        // Create a Hashset to store unique elements
+        HashSet<Integer> uniquSet = new HashSet<>();
+
+        // create a new arraylist to store unique elements
+        List<Integer> arrayListWithoutDuplicates = new ArrayList<>();
+
+        // check in loop for the origial ArrayList
+        for (int i = 0; i < arrayListWithDuplicates.size(); i++) {
+            Integer element = arrayListWithDuplicates.get(i);
+
+            // check if the element is not in uniqueSet
+            if (!uniquSet.contains(element)) {
+                uniquSet.add(element); // adds to unique set
+                arrayListWithoutDuplicates.add(element); // adds to new ArrayList
+            }
+        }
+
+        System.out.println("Array List without duplicates: " + arrayListWithoutDuplicates);
+    }
+}
